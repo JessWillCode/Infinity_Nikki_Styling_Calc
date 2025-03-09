@@ -20,3 +20,41 @@ jobs:
               github.event.issue.state == 'closed' && 'Done' ||
               github.event.issue.state == 'open' && 'In Progress'
             }}
+
+---
+name: Archive Done Issues
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs once a day at midnight UTC
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  archive_done_issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Archive closed issues in Done
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "closed",
+              per_page: 100,
+            });
+
+            for (const issue of issues) {
+              if (issue.labels.some(label => label.name === "Done")) {
+                console.log(`Archiving issue #${issue.number}`);
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: issue.number,
+                  state: "closed",
+                });
+              }
+            }
