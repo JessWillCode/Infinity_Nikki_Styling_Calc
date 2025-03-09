@@ -3,6 +3,8 @@
 ## Description
 Infinity Nikki Stylist Hub is a web-based tool designed to enhance the gameplay experience for *Infinity Nikki* players. Built with **Next.js, React, Chakra UI, and Tailwind CSS**, this hub provides an intuitive UI for outfit styling, score calculations, and personalized recommendations. Over time, it will expand to become an all-in-one tool for all aspects of the game, including progress tracking and optimization.
 
+[Visit the Deployed Site here](infinity-nikki-stylist-5xe2iifw8-jesswillcodes-projects.vercel.app)
+
 ## Features
 ### Core Features:
 - **Visual UI for Styling** – View outfit pieces and *Eureka* visually instead of just by name.
