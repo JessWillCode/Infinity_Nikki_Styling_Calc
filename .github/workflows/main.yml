@@ -15,3 +15,8 @@ jobs:
         with:
           project-url: https://github.com/orgs/jesswillcode/projects/2
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          status: |
+            ${{
+              github.event.issue.state == 'closed' && 'Done' ||
+              github.event.issue.state == 'open' && 'In Progress'
+            }}
