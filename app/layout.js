@@ -1,4 +1,3 @@
-import { Provider } from "@/components/ui/provider"
 import './globals.css'
 
 export default function RootLayout(props) {
@@ -6,7 +5,7 @@ export default function RootLayout(props) {
   return (
     <html suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        {children}
       </body>
     </html>
   )
